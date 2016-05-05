@@ -1,0 +1,33 @@
+body
+{
+    background: url("../css/images/2.jpg");
+    background-repeat: no-repeat;
+}
+
+#status.success
+{
+    background: #0c0;
+    margin: 0px;
+}
+
+#status.fail
+{
+    background: red;
+    margin: 0px;
+}
+
+#status
+{
+    padding: 5px;
+    color: #fff;
+    background: #ccc;
+}
+
+
+.footer
+{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
