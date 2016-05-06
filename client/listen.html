@@ -2,24 +2,55 @@
 <html>
 	<head>
 	    <meta charset="utf-8">
-	    <title>WebRTC Streaming Media from Files</title>
-   	    <script src="/js/adapter.js"></script>
+		<script src="js/adapter.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
+		<script src="css/bootstrap/js/bootstrap.js"></script>
+		<script src="js/jquery.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<style>
 			#holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
 			#holder.hover { border: 10px dashed #333; }
 			#holder.background { background-size:100% 100%; background-repeat:no-repeat;}
 		</style>
+		<link rel="stylesheet" href="css/style.css">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.css"/>
+		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
 	</head>
 
 	<body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Listening Together</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="active"><a>ID</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="https://github.com/tamhoang1412/STOT2016">Github</a></li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
 		<div id="blockcontent">
 			<article style="align: center;">
-				<h1>Listen to the music</h1>
 				<div style="text-align: center;">
 					<h3 id='rate'>&nbsp;</h3>
 				</div>
-				<div style="text-align: center;">
+				<div style="text-align: center;" class="audio_box">
 					<audio controls id="player" autoplay/>
 						Your browser does not support the audio element.
 					</audio>
