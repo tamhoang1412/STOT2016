@@ -1,12 +1,14 @@
 body
 {
-    background: url("../css/images/2.jpg");
-    background-repeat: no-repeat;
+    background: url("../css/images/3.jpg");
+    background-repeat:no-repeat;
+    background-size:cover;
 }
 
 #status.success
 {
-    background: #0c0;
+    background: none;
+    font-family: "Comic Sans MS", sans-serif;
     margin: 0px;
 }
 
