@@ -8,10 +8,12 @@
 	    <script src="js/adapter.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
-		<script src="css/bootstrap/js/bootstrap.js"></script>
+
 		<script src="js/jquery.js"></script>
+		<script src="css/bootstrap/js/bootstrap.js"></script>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="js/id3-minimized.js"></script>
 		<style>
 			#holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
 			#holder.hover { border: 10px dashed #333; }
@@ -57,6 +59,9 @@
 				<div style="text-align: center; color: white">
 					Drag music into the box
 				</div>
+				<div style="text-align: center; color: white">
+					<label id="meta">&nbsp;</label>
+				</div>
 				<div class="footer">
 					<p id="status">The required APIs are not supported by your browser. Please try again using <a href="http://www.google.com/chrome">Chrome</a>.</p>
 				</div>
@@ -71,6 +76,7 @@
     	var state = document.getElementById('status');
     	var room = document.getElementById('room');
     	var counter = document.getElementById('counter');
+    	var meta = document.getElementById('meta');
 
 		(function(){
 			new Clipboard('#copy-button');
@@ -137,15 +143,18 @@
 			console.log("log on");
 			pc = new RTCPeerConnection(pc_config, { optional: [ { RtpDataChannels: true } ]});
 
-			pc.onicecandidate = function(event) {
-				socket.emit('message', { from: myId, to: message.from, data: { type: 'candidate', candidate: event.candidate } } );
-			}
+			
 
 			var from = message.from;
 			peers[from] = { peerconnection: pc, stream: undefined };
 
 			// create a data channel for sending the media description
-			peers[from].dataChannel = peers[from].peerconnection.createDataChannel('mediaDescription', { reliable: true });
+			peers[from].dataChannel = peers[from].peerconnection.createDataChannel('mediaDescription', { reliable: false });
+
+			pc.onicecandidate = function(event) {
+				socket.emit('message', { from: myId, to: message.from, data: { type: 'candidate', candidate: event.candidate } } );	
+			}
+
 			peers[from].dataChannel.onopen = function() {
 				startPlayingIfPossible(from);
 			};
@@ -207,8 +216,15 @@
 			}
 		}
 
+		// Sends media meta information over a rtc data channel to a connected listener
+
 		function sendMediaDescription(channel) {
+			console.log("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbb");
+			console.log(mediaDescription);
+			console.log(channel.readyState);
+			channel.readyState = 'open';
 			if (mediaDescription && channel.readyState === 'open') {
+				console.log("ccccccccccccccc");
 				var data = JSON.stringify(mediaDescription);
 				channel.send(data);
 			}
@@ -225,12 +241,46 @@
   		// is called when a file is dropped in the drop zone
     	function handleFileDrop(event) {
     		// stop the current stream.
-    		stopStream();
+    		//stopStream();
 
 			this.className = '';
 			event.preventDefault();
-
 			var file = event.dataTransfer.files[0];
+			mediaDescription = {};
+
+			// load the meta-data from the mp3
+			ID3.loadTags(file.name, function() {
+				mediaDescription.artist = 'Unknown';
+			    mediaDescription.title = 'Untitled';
+
+			    var tags = ID3.getAllTags(file.name);
+			    console.log(tags.artist + " - " + tags.title + ", " + tags.album);
+
+			    mediaDescription.artist = tags.artist;
+			    mediaDescription.title = tags.title;
+
+			    if ('picture' in tags) {
+			    	var image = tags.picture;
+
+			    	mediaDescription.image = {};
+			    	mediaDescription.image.format = image.format;
+			    	mediaDescription.image.size = image.data.length;
+
+			    	// mediaDescription.image.base64 = Base64.encodeBytes(image.data);
+
+			    	holder.style.background = 'url("data:' + image.format + ';base64,' + Base64.encodeBytes(image.data) + '") no-repeat center';
+			    } else {
+			    	holder.style.background = 'url("res/no-artwork.png")';
+			    }
+
+		    	holder.style.backgroundSize = "295px 295px";
+
+		    	meta.innerHTML = 'Playing ' + mediaDescription.title + ' by ' + mediaDescription.artist;
+			}, { 
+				tags: ["artist", "title", "album", "year", "comment", "track", "genre", "lyrics", "picture"],
+				dataReader: new FileAPIReader(file)
+			});
+
 			if (file.type.match('audio*')) {
 				var reader = new FileReader();
 				// read the mp3 and decode the audio.
@@ -261,6 +311,7 @@
 			mediaSource.connect(remoteDestination);
 
 			for (var peer in peers) {
+				console.log("playStream  " + peers[peer].dataChannel.readyState)
 				startPlayingIfPossible(peer);
 			}
     	}

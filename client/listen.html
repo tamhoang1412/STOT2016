@@ -5,8 +5,9 @@
 		<script src="js/adapter.js"></script>
 		<script src="/socket.io/socket.io.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
-		<script src="css/bootstrap/js/bootstrap.js"></script>
 		<script src="js/jquery.js"></script>
+		<script src="css/bootstrap/js/bootstrap.js"></script>
+		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 		<style>
@@ -48,13 +49,15 @@
 		<div id="blockcontent">
 			<article style="align: center;">
 				<div style="text-align: center;">
-					<h3 id='rate'>&nbsp;</h3>
+					<p id='rate' style="text-align: center; color: white">&nbsp;</p>
 				</div>
+				<br>
 				<div style="text-align: center;" class="audio_box">
 					<audio controls id="player" autoplay/>
 						Your browser does not support the audio element.
 					</audio>
 				</div>
+				<p id='meta' style="text-align: center; color: white">&nbsp;</p>
 			</article>
 		</div>
 	</body>
@@ -85,6 +88,7 @@
 		// UI elements that can be updated
    		var player = document.getElementById('player');
    		var rate = document.getElementById('rate');
+   		var meta = document.getElementById('meta');
 
 		// check for required APIs
 		if (RTCPeerConnection) {
@@ -128,9 +132,27 @@
 
 		// creates a data channel to receive meta data 
 		var dataChannel = pc.createDataChannel('mediaDescription', { reliable: false });
+
 		pc.onicecandidate = function(event) {
 			socket.emit('message', { from: myId, to: to, data: { type: 'candidate', candidate: event.candidate } });
 		}
+
+		dataChannel.onmessage = function (event) {
+			console.log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
+			try {
+				var mediaDescription = JSON.parse(event.data);
+		    	meta.innerHTML = 'Listening to ' + mediaDescription.title + ' by ' + mediaDescription.artist;
+			} catch (err) {
+				console.log(err);
+			}
+		}
+
+		function updateMediaDescription() {
+			console.log('media description received');
+		}
+
+
+		
 
 		// when a message is received add it to the peerconnection accordingly
 		socket.on('message', function(message) {
