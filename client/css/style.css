@@ -41,3 +41,34 @@ body
     top: 50%;
     transform: translateY(-50%);
 }
+
+.intro
+{
+    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+    font-style: italic;
+    font-variant: small-caps;
+    text-decoration: none;
+    color: #afafaf;
+    font-size: 14px;
+}
+.introTit
+{
+    font-family: Gill Sans, Verdana;
+    font-size: 25px;
+    line-height: 30px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+    color: #afafaf;
+}
+#meta
+{
+    font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
+    font-weight: normal;
+    font-size: 1.75em;
+    letter-spacing: .2em;
+    line-height: 1.1em;
+    margin: 0px;
+    text-align: center;
+    text-transform: uppercase;
+}

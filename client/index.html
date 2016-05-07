@@ -10,9 +10,8 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.4.0/clipboard.min.js"></script>
 
 		<script src="js/jquery.js"></script>
-		<script src="css/bootstrap/js/bootstrap.js"></script>
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-		<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+		<script src="css/bootstrap/js/bootstrap.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 		<script src="js/id3-minimized.js"></script>
 		<style>
 			#holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
@@ -22,7 +21,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.css"/>
-		<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css"/>
 	</head>
 
 	<body>
@@ -56,11 +55,17 @@
 		<div id="blockcontent">
 			<article style="align: center;">
 				<div id="holder"></div>
-				<div style="text-align: center; color: white">
-					Drag music into the box
-				</div>
+
 				<div style="text-align: center; color: white">
 					<label id="meta">&nbsp;</label>
+				</div>
+				<div class="introTit">
+					Introduction:
+				</div>
+				<div class="intro">
+					Drag music file into the box.<br>
+					Click "Sharing Link" to get shared link.<br>
+					Listener showing number of listener.<br>
 				</div>
 				<div class="footer">
 					<p id="status">The required APIs are not supported by your browser. Please try again using <a href="http://www.google.com/chrome">Chrome</a>.</p>
@@ -78,9 +83,6 @@
     	var counter = document.getElementById('counter');
     	var meta = document.getElementById('meta');
 
-		(function(){
-			new Clipboard('#copy-button');
-		})();
 		// Check for the various File API support.
 		if (window.File
 			&& window.FileReader
