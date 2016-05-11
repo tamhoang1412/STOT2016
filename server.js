@@ -4,7 +4,7 @@ var static = require('node-static');
 //
 // Create a node-static server instance to serve the './public' folder
 //
-
+usernames =[];
 var file = new(static.Server)('./client');
 
 var server = require('http').createServer(function (request, response) {
@@ -48,6 +48,9 @@ io.sockets.on('connection', function(socket) {
 		console.log("server disconnect");
 		sockets[socket] = undefined;
 		delete sockets[socket];
+		if(!socket.username) return;
+		usernames.splice(usernames.indexOf(socket.username), 1);
+		updateUsernames();
 	});
 
 	// when a message is received forward it to the addressee
@@ -78,6 +81,29 @@ io.sockets.on('connection', function(socket) {
 			socket.emit('error', 'Does not exsist at server.');
 		}
 	});
+
+	socket.on('new user', function(data, callback) {
+		if(usernames.indexOf(data) != -1) {
+			callback(false);
+		}
+		else
+		{
+			callback(true);
+			socket.username = data;
+			usernames.push(socket.username);
+			updateUsernames();
+		}
+	});
+
+	function updateUsernames(){
+		io.sockets.emit('usernames', usernames);
+	}
+	// Send message event
+	socket.on('send message', function(data) {
+		io.sockets.emit('new message', {msg:data, user: socket.username});
+	});
+
+
 });
 
 
