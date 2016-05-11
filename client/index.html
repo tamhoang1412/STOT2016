@@ -22,7 +22,6 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.css"/>
 		<link rel="stylesheet" href="css/bootstrap/css/bootstrap.min.css"/>
-		<link rel="stylesheet" href="css/chat.css"/>
 	</head>
 
 	<body>
@@ -76,39 +75,12 @@
 			</div>
 		</div>
 
-		<div class="col-md-6">
-			<div id="container">
-	            <div id="namesWrapper">
-	                <h2>ChatIO</h2>
-	                <p>
-	                    Create Username:
-	                </p>
-	                <div id="error"></div>
-	                <br>
-	                <form id="usernameForm">
-	                    <input size="35" id="username">
-	                    <input type="submit" value="Submit">
-	                </form>
-	            </div>
-
-	            <div id="mainWrapper">
-	                <h2>ChatIO</h2>
-	                <div id="chatWrapper">
-	                    <div id="chatWindow"></div>
-	                    <form id="messageForm">
-	                        <input size="35" id="message" placeholder="Type Something...">
-	                        <input type="submit" value="Say It!">
-	                    </form>
-	                </div>
-
-	                <div id="userWrapper">
-	                    <div id="users"></div>
-	                </div>
-	            </div>
-        	</div>
-		</div>
-
-		<script src="js/chat.js"></script>
+		<div id="chatPage"></div>
+		<script>
+			$(function(){
+		      $("#chatPage").load("chat.html"); 
+		    });
+		</script>
 	</body>
 
     <script lang="javascript">
