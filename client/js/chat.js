@@ -37,6 +37,6 @@ $(function(){
     });
 
     socket.on('new message', function(data) {
-        $chat.append('<strong>'+data.user+'</strong>: '+data.msg+'<br>').animate({scrollTop: $chat.prop("scrollHeight")},100);
+       $chat.append('<strong>'+data.user+'</strong>: '+data.msg+'<br>').animate({scrollTop: $chat.prop("scrollHeight")},100);
     });
 });
