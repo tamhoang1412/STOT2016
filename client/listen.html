@@ -46,7 +46,7 @@
 				</div><!-- /.navbar-collapse -->
 			</div><!-- /.container-fluid -->
 		</nav>
-		<div id="blockcontent">
+		<div id="blockcontent" class="col-md-6">
 			<article style="align: center;">
 				<div style="text-align: center;">
 					<p id='rate' style="text-align: center; color: white">&nbsp;</p>
@@ -60,6 +60,12 @@
 				<p id='meta' style="text-align: center; color: white">&nbsp;</p>
 			</article>
 		</div>
+		<div id="chatPage"></div>
+		<script>
+			$(function(){
+		      $("#chatPage").load("chat.html"); 
+		    });
+		</script>
 	</body>
 
     <script lang="javascript">
