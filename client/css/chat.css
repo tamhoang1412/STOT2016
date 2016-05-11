@@ -9,6 +9,7 @@
 
 #chatWindow {
     height: 300px;
+    overflow-y: scroll;
 }
 
 #mainWrapper {
