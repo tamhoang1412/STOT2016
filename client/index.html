@@ -52,35 +52,36 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div class=col-md-6>
-      <div id="blockcontent">
-        <article style="align: center;">
-          <div id="holder"></div>
 
-          <div style="text-align: center; color: white">
-            <label id="meta">&nbsp;</label>
-          </div>
-          <div class="introTit">
-            Introduction:
-          </div>
-          <div class="intro">
-            Drag music file into the box.<br>
-            Click "Sharing Link" to get shared link.<br>
-            Listener showing number of listener.<br>
-          </div>
-        </article>
-      </div>
+    <div id="blockcontent">
+      <article style="align: center;">
+        <div id="holder"></div>
+
+        <div style="text-align: center; color: white">
+          <label id="meta">&nbsp;</label>
+        </div>
+        <div class="introTit">
+          Introduction:
+        </div>
+        <div class="intro">
+          Drag music file into the box.<br>
+          Click "Sharing Link" to get shared link.<br>
+          Listener showing number of listener.<br>
+        </div>
+        <div id="chatPage"></div>
+        <script>
+          $(function(){
+            $("#chatPage").load("chat.html");
+          });
+        </script>
+        <div class="footer">
+          <p id="status">The required APIs are not supported by your browser. Please try again using <a href="http://www.google.com/chrome">Chrome</a>.</p>
+        </div>
+      </article>
     </div>
 
-    <div id="chatPage"></div>
-    <script>
-      $(function(){
-          $("#chatPage").load("chat.html"); 
-        });
-    </script>
-    <div class="footer">
-      <p id="status">The required APIs are not supported by your browser. Please try again using <a href="http://www.google.com/chrome">Chrome</a>.</p>
-    </div>
+
+
   </body>
 
     <script lang="javascript">
