@@ -46,7 +46,7 @@
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
-    <div id="blockcontent" class="col-md-6">
+    <div id="blockcontent">
       <article style="align: center;">
         <div style="text-align: center;">
           <p id='rate' style="text-align: center; color: white">&nbsp;</p>
@@ -58,14 +58,15 @@
           </audio>
         </div>
         <p id='meta' style="text-align: center; color: white">&nbsp;</p>
+        <div id="chatPage"></div>
+        <script>
+          $(function(){
+            $("#chatPage").load("chat.html");
+          });
+        </script>
       </article>
     </div>
-    <div id="chatPage"></div>
-    <script>
-      $(function(){
-          $("#chatPage").load("chat.html"); 
-        });
-    </script>
+
   </body>
 
     <script lang="javascript">

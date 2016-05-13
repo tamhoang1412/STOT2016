@@ -9,6 +9,11 @@ $(function(){
     var $username = $('#username');
     var $error = $('#error');
 
+    $('textarea').on('keydown', function(event) {
+        if (event.keyCode == 13)
+            if (!event.shiftKey) $('#usernameForm').submit();
+    });
+
     $usernameForm.submit(function(e) {
         e.preventDefault();
         socket.emit('new user', $username.val(), function(data){
@@ -21,7 +26,7 @@ $(function(){
         });
         $username.val('');
     });
-
+   
     socket.on('usernames', function(data) {
         var html='';
         for (i=0; i<data.length; i++) {

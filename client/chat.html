@@ -1,4 +1,5 @@
 <link rel="stylesheet" href="css/chat.css"/>
+
 <div id="container">
     <div id="namesWrapper">
         <h2>Chat Together</h2>
@@ -8,7 +9,7 @@
         <div id="error"></div>
         <br>
         <form id="usernameForm">
-            <input size="35" id="username">
+            <textarea id="username"></textarea>
             <input type="submit" class="user-submit" value="Submit">
         </form>
     </div>
@@ -20,7 +21,7 @@
         <div id="chatWrapper">
             <div id="chatWindow"></div>
             <form id="messageForm">
-                <input size="35" id="message" placeholder="Type Something...">
+                <input id="message" placeholder="Type Something...">
                 <input type="submit" class="message-submit" value="Send">
             </form>
         </div>
