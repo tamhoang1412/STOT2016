@@ -29,79 +29,79 @@ console.log('Listening on port: ' + port);
 var sockets = {};
 
 io.sockets.on('connection', function(socket) {
-	console.log("server starts connection");
-	var id;
+  console.log("server starts connection");
+  var id;
 
-	// determine an identifier that is unique for us.
+  // determine an identifier that is unique for us.
 
-	do {
-		id = uuid.v4();
-	} while (sockets[id]);
+  do {
+    id = uuid.v4();
+  } while (sockets[id]);
 
-	// we have a unique identifier that can be sent to the client
+  // we have a unique identifier that can be sent to the client
 
-	sockets[id] = socket;
-	socket.emit('your-id', id);
+  sockets[id] = socket;
+  socket.emit('your-id', id);
 
-	// remove references to the disconnected socket
-	socket.on('disconnect', function() {
-		console.log("server disconnect");
-		sockets[socket] = undefined;
-		delete sockets[socket];
-		if(!socket.username) return;
-		usernames.splice(usernames.indexOf(socket.username), 1);
-		updateUsernames();
-	});
+  // remove references to the disconnected socket
+  socket.on('disconnect', function() {
+    console.log("server disconnect");
+    sockets[socket] = undefined;
+    delete sockets[socket];
+    if(!socket.username) return;
+    usernames.splice(usernames.indexOf(socket.username), 1);
+    updateUsernames();
+  });
 
-	// when a message is received forward it to the addressee
-	socket.on('message', function(message) {
-		console.log("server mes");
-		if (sockets[message.to]) {
-			sockets[message.to].emit('message', message);
-		} else {
-			socket.emit('disconnected', message.from);
-		}
-	});
+  // when a message is received forward it to the addressee
+  socket.on('message', function(message) {
+    console.log("server mes");
+    if (sockets[message.to]) {
+      sockets[message.to].emit('message', message);
+    } else {
+      socket.emit('disconnected', message.from);
+    }
+  });
 
-	// when a listener logs on let the media streaming know about it
-	socket.on('logon', function(message) {
-		console.log("server logon");
-		if (sockets[message.to]) {
-			sockets[message.to].emit('logon', message);
-		} else {
-			socket.emit('error', 'Does not exsist at server.');
-		}
-	});
+  // when a listener logs on let the media streaming know about it
+  socket.on('logon', function(message) {
+    console.log("server logon");
+    if (sockets[message.to]) {
+      sockets[message.to].emit('logon', message);
+    } else {
+      socket.emit('error', 'Does not exsist at server.');
+    }
+  });
 
-	socket.on('logoff', function(message) {
-		console.log("server logoff");
-		if (sockets[message.to]) {
-			sockets[message.to].emit('logoff', message);
-		} else {
-			socket.emit('error', 'Does not exsist at server.');
-		}
-	});
+  socket.on('logoff', function(message) {
+    console.log("server logoff");
+    if (sockets[message.to]) {
+      sockets[message.to].emit('logoff', message);
+    } else {
+      socket.emit('error', 'Does not exsist at server.');
+    }
+  });
 
-	socket.on('new user', function(data, callback) {
-		if(usernames.indexOf(data) != -1) {
-			callback(false);
-		}
-		else
-		{
-			callback(true);
-			socket.username = data;
-			usernames.push(socket.username);
-			updateUsernames();
-		}
-	});
+  socket.on('new user', function(data, callback) {
+    if(usernames.indexOf(data) != -1) {
+      callback(false);
+    }
+    else
+    {
+      callback(true);
+      socket.username = data;
+      usernames.push(socket.username);
+      updateUsernames();
+    }
+  });
 
-	function updateUsernames(){
-		io.sockets.emit('usernames', usernames);
-	}
-	// Send message event
-	socket.on('send message', function(data) {
-		io.sockets.emit('new message', {msg:data, user: socket.username});
-	});
+  function updateUsernames(){
+    io.sockets.emit('usernames', usernames);
+  }
+  // Send message event
+  socket.on('send message', function(data) {
+    io.sockets.emit('new message', {msg:data, user: socket.username});
+  });
 
 
 });
