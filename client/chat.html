@@ -1,8 +1,9 @@
 <link rel="stylesheet" href="css/chat.css"/>
 <div class="col-md-6">
-  <div id="container">
+
+<div id="container">
     <div id="namesWrapper">
-      <h2>ChatIO</h2>
+        <h2>Chat Together</h2>
         <p>
             Create Username:
         </p>
@@ -10,25 +11,23 @@
         <br>
         <form id="usernameForm">
             <input size="35" id="username">
-            <input type="submit" value="Submit">
+            <input type="submit" class="user-submit" value="Submit">
         </form>
     </div>
 
     <div id="mainWrapper">
-        <h2>ChatIO</h2>
+        <div id="userWrapper" >
+            <div id="users"></div>
+        </div>
         <div id="chatWrapper">
             <div id="chatWindow"></div>
             <form id="messageForm">
                 <input size="35" id="message" placeholder="Type Something...">
-                <input type="submit" value="Say It!">
+                <input type="submit" class="message-submit" value="Send">
             </form>
         </div>
-
-        <div id="userWrapper">
-            <div id="users"></div>
-        </div>
     </div>
-  </div>
 </div>
+
 
 <script src="js/chat.js"></script>
