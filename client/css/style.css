@@ -73,14 +73,14 @@ body
 }
 #meta
 {
-    font-family:  'Hoefler Text', Georgia, 'Times New Roman', serif;
-    font-weight: normal;
-    font-size: 1.75em;
-    letter-spacing: .2em;
-    line-height: 1.1em;
-    margin: 0;
-    text-align: center;
-    text-transform: uppercase;
+    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+    letter-spacing:0.1em;
+    text-align:center;
+    margin: 40px auto;
+    text-transform: lowercase;
+    line-height: 100%;
+    font-size: 18pt;
+    font-variant: small-caps;
 }
 
 #chatPage
