@@ -26,7 +26,7 @@ $(function(){
         });
         $username.val('');
     });
-   
+    //username
     socket.on('usernames', function(data) {
         var html='';
         for (i=0; i<data.length; i++) {
