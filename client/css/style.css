@@ -5,6 +5,10 @@ body
     background-size:cover;
 }
 
+#holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
+#holder.hover { border: 10px dashed #333; }
+#holder.background { background-size:100% 100%; background-repeat:no-repeat;}
+
 #status.success
 {
     background: none;
@@ -54,7 +58,6 @@ body
 
 .intro
 {
-    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
     font-style: italic;
     font-variant: small-caps;
     text-decoration: none;
@@ -63,24 +66,21 @@ body
 }
 .introTit
 {
-    font-family: Gill Sans, Verdana;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     font-size: 25px;
     line-height: 30px;
-    text-transform: uppercase;
     letter-spacing: 2px;
     font-weight: bold;
     color: #afafaf;
 }
 #meta
 {
-    font-family: "Adobe Caslon Pro", "Hoefler Text", Georgia, Garamond, Times, serif;
+    font-family: "Comic Sans MS", cursive, sans-serif;
     letter-spacing:0.1em;
     text-align:center;
     margin: 40px auto;
-    text-transform: lowercase;
     line-height: 100%;
     font-size: 18pt;
-    font-variant: small-caps;
     width: 700px;
 }
 
