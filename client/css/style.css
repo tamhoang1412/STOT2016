@@ -1,8 +1,10 @@
 body
 {
-    background: url("../css/images/3.jpg");
-    background-repeat:no-repeat;
-    background-size:cover;
+
+}
+#blockcontent{
+    width:100%;
+    height:100%;
 }
 
 #holder { border: 10px dashed #ccc; width: 300px; height: 300px; margin: 20px auto;}
@@ -39,13 +41,32 @@ body
     border-color:rgba(0, 0, 0, 0.5);
     font-size: 16px;
 }
-
-.footer
+#meta
 {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    left: 0;
+    font-family: "Comic Sans MS", cursive, sans-serif;
+    letter-spacing:0.1em;
+    text-align:center;
+    margin: 40px auto;
+    line-height: 100%;
+    font-size: 18pt;
+}
+
+#chatPage
+{
+  position: absolute;
+
+  bottom: 0;
+  right: 0;
+}
+
+.footer {
+  position:fixed;
+  left:0px;
+  bottom:0px;
+  height:30px;
+  width:100%;
+  box-shadow: rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .audio_box
@@ -58,7 +79,6 @@ body
 
 .intro
 {
-    font-style: italic;
     font-variant: small-caps;
     text-decoration: none;
     color: #afafaf;
@@ -73,21 +93,15 @@ body
     font-weight: bold;
     color: #afafaf;
 }
-#meta
-{
-    font-family: "Comic Sans MS", cursive, sans-serif;
-    letter-spacing:0.1em;
-    text-align:center;
-    margin: 40px auto;
-    line-height: 100%;
-    font-size: 18pt;
-    width: 700px;
-}
-
-#chatPage
-{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    width: 400px;
-}
+.col-md-1 {width: 8.33%;}
+.col-md-2 {width: 16.66%;}
+.col-md-3 {width: 25%;}
+.col-md-4 {width: 33.33%;}
+.col-md-5 {width: 41.66%;}
+.col-md-6 {width: 50%;}
+.col-md-7 {width: 58.33%;}
+.col-md-8 {width: 66.66%;}
+.col-md-9 {width: 75%;}
+.col-md-10 {width: 83.33%;}
+.col-md-11 {width: 91.66%;}
+.col-md-12 {width: 100%;}
