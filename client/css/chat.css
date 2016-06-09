@@ -51,7 +51,9 @@
 
 #chatWrapper
 {
-    float: right;
+    float: left;
+    margin-left: 20px;
+    width: 90%;
     padding: 10px;
     box-shadow: rgba(0, 0, 0, 0.2);
     background: rgba(0, 0, 0, 0.5);
@@ -65,8 +67,9 @@
     background: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     padding: 10px;
+    margin-top: 10px;
     margin-left: 20px;
-    width: 150px;
+    width: 200px;
     max-height: 200px;
 }
 
@@ -78,16 +81,17 @@
 #chatWindow
 {
     color: rgba(255, 255, 255, 0.7);
-    width: 280px;
+    width: 100%;
 }
 
 #namesWrapper
 {
+    bottom: 0px;
     box-shadow: rgba(0, 0, 0, 0.2);
     background: rgba(0, 0, 0, 0.5);
     border-radius: 20px;
     padding: 10px;
-    margin-left: 20px;
+    margin-left: 10px;
 }
 
 #namesWrapper h2
@@ -106,7 +110,7 @@
 }
 #messageForm
 {
-    width: 70%;
+    width: 100%;
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
@@ -125,7 +129,7 @@
     height: 20px;
     margin: 0;
     padding-right: 20px;
-    width: 180px;
+    width: 100%
 }
 #messageForm textarea:focus:-webkit-placeholder
 {
@@ -175,7 +179,7 @@
     height: 20px;
     margin: 0;
     padding-right: 20px;
-    width: 375px;
+    width: 100%;
 }
 #usernameForm textarea:focus:-webkit-placeholder
 {

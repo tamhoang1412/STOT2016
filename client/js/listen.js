@@ -86,7 +86,7 @@ pc.ondatachannel = function (event) {
 function onReceiveMessageCallback (event) {
   try {
     var mediaDescription = JSON.parse(event.data);
-      meta.innerHTML = 'Listening to ' + mediaDescription.title + ' by ' + mediaDescription.artist;
+      meta.innerHTML = 'Listening to ' + mediaDescription.title  + '"<br /> by ' + mediaDescription.artist;
   } catch (err) {
     console.log(err);
   }
