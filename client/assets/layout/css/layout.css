@@ -1510,7 +1510,7 @@ Page content
   .page-content-wrapper .page-content {
     margin: 0px !important;
     padding: 20px 20px 20px 20px !important;
-    min-height: 280px; } }
+    min-height: 550px; } }
 
 @media (min-width: 768px) and (max-width: 991px) {
   /*  768px & 991px */
